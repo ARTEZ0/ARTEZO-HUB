@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b0d12">
+<title>ARTEZO HUB — CS2 Universe</title>
+<style>
+:root{--bg:#0b0d12;--panel:#131720;--panel2:#191f2b;--line:#293140;--text:#f3f5f8;--muted:#9ba6b5;--red:#ef4444;--red2:#991b1b;--green:#46d39a}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 85% 0%,#30151a 0,transparent 35%),var(--bg);color:var(--text);font:15px/1.5 Inter,Segoe UI,Arial,sans-serif}
+button{font:inherit;cursor:pointer} .shell{max-width:1180px;margin:auto;padding:22px}
+header{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:12px 0 22px;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:1.5px;font-size:21px}.mark{width:42px;height:42px;border-radius:12px;background:linear-gradient(145deg,#ff4d4d,#8b111b);display:grid;place-items:center;font-weight:1000;font-size:22px;box-shadow:0 8px 30px #ef444433}
+.brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:3px;font-weight:700}
+.status{color:var(--green);font-size:12px;border:1px solid #235640;background:#10251d;padding:6px 10px;border-radius:30px}
+.layout{display:grid;grid-template-columns:220px 1fr;gap:22px;margin-top:22px}
+nav{background:#10141c;border:1px solid var(--line);border-radius:16px;padding:12px;height:max-content;position:sticky;top:16px}
+.navbtn{display:flex;align-items:center;gap:11px;width:100%;border:0;background:transparent;color:var(--muted);text-align:left;padding:12px;border-radius:10px;margin:2px 0}
+.navbtn:hover,.navbtn.active{background:#2a171c;color:white}.navbtn.active{box-shadow:inset 3px 0 var(--red)}
+main{min-width:0}.hero{padding:28px;border:1px solid #49242a;border-radius:18px;background:linear-gradient(115deg,#241217,#141821 65%);position:relative;overflow:hidden}
+.eyebrow{color:#ff7777;font-weight:800;letter-spacing:2px;font-size:11px}.hero h1{font-size:clamp(30px,5vw,48px);line-height:1.05;margin:12px 0}.hero p{color:#b8c0cb;max-width:560px}.hero:after{content:"A";position:absolute;right:45px;top:-45px;font-size:240px;font-weight:1000;color:#ffffff08;pointer-events:none}
+.btn{border:0;border-radius:10px;padding:11px 16px;background:var(--red);color:white;font-weight:800}.btn:hover{filter:brightness(1.12)}.btn.secondary{background:#252d3a;border:1px solid #394455}
+.sectionhead{display:flex;justify-content:space-between;align-items:center;margin:25px 0 12px;gap:10px}.sectionhead h2{margin:0;font-size:18px}.muted{color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:17px}.card .ico{font-size:24px}.card h3{margin:8px 0 3px;font-size:15px}.card p{margin:0;color:var(--muted);font-size:13px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}.stat{background:var(--panel);border:1px solid var(--line);padding:14px;border-radius:13px}.stat b{font-size:23px;display:block}.stat span{font-size:12px;color:var(--muted)}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:19px;margin-top:15px}
+.view{display:none}.view.active{display:block}
+label{display:block;color:#c5ccd6;font-size:13px;margin:12px 0 6px}input,select{width:100%;background:#0c1017;border:1px solid #354052;color:white;padding:11px;border-radius:9px;outline:none}input:focus,select:focus{border-color:var(--red)}
+.row{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.rangeval{color:#ff8b8b;font-weight:800}
+.cross-preview{height:180px;background:radial-gradient(circle at center,#343b48,#11151d 70%);border:1px solid var(--line);border-radius:12px;display:grid;place-items:center;position:relative;overflow:hidden}
+.cross{position:relative;width:50px;height:50px}.cross i{position:absolute;background:#00ff66;box-shadow:0 0 5px #00ff66}.cross .h{height:3px;width:50px;left:0;top:23px}.cross .v{width:3px;height:50px;left:23px;top:0}
+.target-area{height:310px;background:radial-gradient(circle,#222b38,#0b0f16 70%);border:1px solid var(--line);border-radius:12px;position:relative;overflow:hidden;cursor:crosshair}
+.target{position:absolute;width:42px;height:42px;border:3px solid #ff5656;border-radius:50%;background:#ff565633;box-shadow:0 0 18px #ef444455;transform:translate(-50%,-50%);cursor:pointer}
+.target:before,.target:after{content:"";position:absolute;background:#ffb0b0}.target:before{width:2px;height:56px;left:17px;top:-10px}.target:after{height:2px;width:56px;top:17px;left:-10px}
+table{width:100%;border-collapse:collapse}td,th{text-align:left;padding:11px;border-bottom:1px solid var(--line)}th{color:var(--muted);font-size:12px}
+.pill{font-size:11px;background:#242c38;padding:4px 8px;border-radius:20px;color:#cbd5e1}
+footer{text-align:center;color:#6f7a89;padding:25px;font-size:12px}
+.toast{color:var(--green);min-height:22px;font-size:13px}
+@media(max-width:800px){.layout{grid-template-columns:1fr}nav{position:static;display:grid;grid-template-columns:repeat(3,1fr);gap:3px}.navbtn{justify-content:center;font-size:12px;padding:10px 4px}.navbtn span:last-child{display:none}.cards{grid-template-columns:1fr 1fr}.stats{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.shell{padding:13px}.cards{grid-template-columns:1fr}.row{grid-template-columns:1fr}.hero{padding:22px}.status{font-size:10px}}
+</style>
+</head>
+<body>
+<div class="shell">
+<header><div class="brand"><div class="mark">A</div><div>ARTEZO HUB<small>CS2 UNIVERSE</small></div></div><div class="status">● V1.0 · ONLINE</div></header>
+<div class="layout">
+<nav aria-label="Навигация">
+<button class="navbtn active" data-view="home">🏠 <span>Главная</span></button>
+<button class="navbtn" data-view="aim">🎯 <span>Aim Trainer</span></button>
+<button class="navbtn" data-view="crosshair">✚ <span>Прицел</span></button>
+<button class="navbtn" data-view="leaderboard">🏆 <span>Рейтинг</span></button>
+<button class="navbtn" data-view="settings">⚙️ <span>Pro Settings</span></button>
+<button class="navbtn" data-view="about">🐉 <span>О проекте</span></button>
+</nav>
+<main>
+<section class="view active" id="home">
+<div class="hero"><div class="eyebrow">WELCOME TO YOUR CS2 SPACE</div><h1>ИГРАЙ УМНЕЕ.<br><span style="color:#ff6262">СТАНОВИСЬ СИЛЬНЕЕ.</span></h1><p>ARTEZO HUB — твоя небольшая база инструментов для Counter-Strike 2. Тренируй реакцию, настраивай прицел и следи за прогрессом.</p><button class="btn" onclick="showView('aim')">Начать тренировку →</button></div>
+<div class="stats"><div class="stat"><b>01</b><span>ТВОЙ HUB</span></div><div class="stat"><b>∞</b><span>ПУТЬ К ПРОГРЕССУ</span></div><div class="stat"><b>CS2</b><span>ГЛАВНАЯ ИГРА</span></div><div class="stat"><b>V1</b><span>ПЕРВАЯ ВЕРСИЯ</span></div></div>
+<div class="sectionhead"><h2>Инструменты</h2><span class="pill">Выбери раздел</span></div>
+<div class="cards">
+<div class="card"><div class="ico">🎯</div><h3>Aim Trainer</h3><p>Попадай по мишеням и проверяй реакцию.</p></div>
+<div class="card"><div class="ico">✚</div><h3>Crosshair Lab</h3><p>Подбирай цвет и размер прицела.</p></div>
+<div class="card"><div class="ico">🏆</div><h3>Leaderboard</h3><p>Демонстрационный рейтинг игроков.</p></div>
+</div>
+<div class="panel"><b>Следующая цель</b><p class="muted">Добавить реальные профили, сохранение статистики и больше настроек.</p></div>
+</section>
+<section class="view" id="aim">
+<div class="sectionhead"><h2>🎯 Aim Trainer</h2><span class="pill">Тренировка на 30 секунд</span></div>
+<p class="muted">Нажми «Старт», затем кликай по появляющимся мишеням. Это простая браузерная мини-игра.</p>
+<div class="row"><div class="stat"><b id="score">0</b><span>ПОПАДАНИЯ</span></div><div class="stat"><b id="time">30</b><span>СЕКУНД</span></div></div>
+<div class="sectionhead"><button class="btn" id="startAim">Старт</button><span class="muted" id="aimMsg">Готов?</span></div>
+<div class="target-area" id="targetArea"><button class="target" id="target" aria-label="Мишень" style="display:none"></button></div>
+<p class="toast" id="aimResult"></p>
+</section>
+<section class="view" id="crosshair">
+<div class="sectionhead"><h2>✚ Crosshair Lab</h2><span class="pill">Предпросмотр</span></div>
+<div class="cross-preview"><div class="cross" id="cross"><i class="h"></i><i class="v"></i></div></div>
+<div class="panel">
+<div class="row"><div><label for="color">Цвет прицела</label><select id="color"><option value="#00ff66">Зелёный</option><option value="#00d9ff">Голубой</option><option value="#ffea00">Жёлтый</option><option value="#ff4b4b">Красный</option><option value="#ffffff">Белый</option></select></div><div><label for="size">Размер: <span class="rangeval" id="sizeVal">50</span></label><input id="size" type="range" min="20" max="80" value="50"></div></div>
+<label for="thickness">Толщина: <span class="rangeval" id="thickVal">3</span></label><input id="thickness" type="range" min="1" max="7" value="3">
+<div class="sectionhead"><button class="btn" id="copyCross">Скопировать параметры</button></div><p class="toast" id="crossMsg"></p>
+</div>
+</section>
+<section class="view" id="leaderboard">
+<div class="sectionhead"><h2>🏆 Leaderboard</h2><span class="pill">Демо-данные</span></div>
+<p class="muted">Пример таблицы. Это не реальные FACEIT или Steam данные.</p>
+<div class="panel"><table><thead><tr><th>#</th><th>Игрок</th><th>Роль</th><th>Уровень</th></tr></thead><tbody><tr><td>1</td><td>donk</td><td>Rifler</td><td>PRO</td></tr><tr><td>2</td><td>sh1ro</td><td>AWPer</td><td>PRO</td></tr><tr><td>3</td><td>m0NESY</td><td>AWPer</td><td>PRO</td></tr><tr><td>4</td><td>ARTEZO</td><td>Rifler</td><td><span class="pill">YOUR PROFILE</span></td></tr></tbody></table></div>
+</section>
+<section class="view" id="settings">
+<div class="sectionhead"><h2>⚙️ Pro Settings</h2><span class="pill">Примеры</span></div>
+<p class="muted">Публичные настройки игроков могут меняться. Здесь пока демонстрационные карточки — проверяй актуальные значения перед использованием.</p>
+<div class="cards"><div class="card"><h3>donk</h3><p>Агрессивный rifler · настройки можно добавить позже.</p></div><div class="card"><h3>sh1ro</h3><p>AWPer · настройки можно добавить позже.</p></div><div class="card"><h3>m0NESY</h3><p>AWPer · настройки можно добавить позже.</p></div></div>
+</section>
+<section class="view" id="about">
+<div class="hero"><div class="eyebrow">INDEPENDENT COMMUNITY PROJECT</div><h1>ARTEZO HUB</h1><p>Проект, созданный фанатом CS2 для игроков, которые хотят тренироваться, экспериментировать с настройками и развиваться.</p></div>
+<div class="panel"><h3>Что работает в первой версии?</h3><p>✓ Навигация между разделами<br>✓ Мини aim trainer<br>✓ Настройка и предпросмотр прицела<br>✓ Демонстрационная таблица игроков</p><p class="muted">Профили, вход в аккаунт, онлайн-рейтинг и подключение к Steam пока не реализованы.</p></div>
+</section>
+</main>
+</div>
+<footer>ARTEZO HUB · FAN-MADE CS2 PROJECT · NOT AFFILIATED WITH VALVE</footer>
+</div>
+<script>
+const nav=[...document.querySelectorAll('.navbtn')];
+function showView(id){document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===id));nav.forEach(b=>b.classList.toggle('active',b.dataset.view===id));}
+nav.forEach(b=>b.addEventListener('click',()=>showView(b.dataset.view)));
+let score=0,remaining=30,timer=null,running=false;
+const target=document.getElementById('target'),area=document.getElementById('targetArea');
+function placeTarget(){const r=area.getBoundingClientRect();target.style.left=(22+Math.random()*(r.width-44))+'px';target.style.top=(22+Math.random()*(r.height-44))+'px';}
+function finishAim(){running=false;clearInterval(timer);target.style.display='none';document.getElementById('aimMsg').textContent='Раунд завершён';document.getElementById('aimResult').textContent='Результат: '+score+' попаданий за 30 секунд.';}
+document.getElementById('startAim').addEventListener('click',()=>{clearInterval(timer);score=0;remaining=30;running=true;document.getElementById('score').textContent=score;document.getElementById('time').textContent=remaining;document.getElementById('aimResult').textContent='';document.getElementById('aimMsg').textContent='Поехали!';target.style.display='block';placeTarget();timer=setInterval(()=>{remaining--;document.getElementById('time').textContent=remaining;if(remaining<=0)finishAim();},1000);});
+target.addEventListener('click',e=>{e.stopPropagation();if(!running)return;score++;document.getElementById('score').textContent=score;placeTarget();});
+const color=document.getElementById('color'),size=document.getElementById('size'),thick=document.getElementById('thickness'),cross=document.getElementById('cross');
+function updateCross(){const s=+size.value,t=+thick.value;cross.style.width=s+'px';cross.style.height=s+'px';cross.querySelector('.h').style.width=s+'px';cross.querySelector('.h').style.height=t+'px';cross.querySelector('.h').style.top=(s-t)/2+'px';cross.querySelector('.v').style.height=s+'px';cross.querySelector('.v').style.width=t+'px';cross.querySelector('.v').style.left=(s-t)/2+'px';cross.querySelectorAll('i').forEach(i=>{i.style.background=color.value;i.style.boxShadow='0 0 5px '+color.value;});document.getElementById('sizeVal').textContent=s;document.getElementById('thickVal').textContent=t;}
+[color,size,thick].forEach(el=>el.addEventListener('input',updateCross));updateCross();
+document.getElementById('copyCross').addEventListener('click',async()=>{const txt='ARTEZO Crosshair settings\\nColor: '+color.value+'\\nSize: '+size.value+'\\nThickness: '+thick.value;try{await navigator.clipboard.writeText(txt);document.getElementById('crossMsg').textContent='Параметры скопированы!';}catch(e){document.getElementById('crossMsg').textContent=txt;}});
+</script>
+</body></html>
