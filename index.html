@@ -114,4 +114,95 @@ function updateCross(){const s=+size.value,t=+thick.value;cross.style.width=s+'p
 [color,size,thick].forEach(el=>el.addEventListener('input',updateCross));updateCross();
 document.getElementById('copyCross').addEventListener('click',async()=>{const txt='ARTEZO Crosshair settings\\nColor: '+color.value+'\\nSize: '+size.value+'\\nThickness: '+thick.value;try{await navigator.clipboard.writeText(txt);document.getElementById('crossMsg').textContent='Параметры скопированы!';}catch(e){document.getElementById('crossMsg').textContent=txt;}});
 </script>
-</body></html>
+</body><<style>
+.artezo-profile {
+  max-width: 650px;
+  margin: 40px auto;
+  padding: 25px;
+  background: #15151c;
+  border: 1px solid #ff3030;
+  border-radius: 18px;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+.artezo-top {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.artezo-avatar {
+  width: 75px;
+  height: 75px;
+  border-radius: 16px;
+  background: #ff3030;
+  display: grid;
+  place-items: center;
+  font-size: 35px;
+  font-weight: bold;
+}
+.artezo-profile h2 {
+  margin: 0 0 8px;
+  font-size: 27px;
+}
+.artezo-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 25px;
+}
+.artezo-stat {
+  background: #24242e;
+  padding: 15px 8px;
+  border-radius: 12px;
+  text-align: center;
+}
+.artezo-stat strong {
+  display: block;
+  font-size: 23px;
+  color: #ff4545;
+}
+.artezo-stat span {
+  font-size: 11px;
+  color: #aaa;
+}
+.artezo-profile button {
+  margin-top: 20px;
+  padding: 12px 20px;
+  background: #ff3030;
+  color: white;
+  border: 0;
+  border-radius: 9px;
+  cursor: pointer;
+  font-weight: bold;
+}
+</style>
+
+<section class="artezo-profile">
+  <div class="artezo-top">
+    <div class="artezo-avatar">A</div>
+    <div>
+      <h2>ARTEZO 🇪🇪</h2>
+      <div style="color:#ff5555">SMART AGGRESSIVE RIFLER</div>
+      <small>FUTURE PROFESSIONAL PLAYER</small>
+    </div>
+  </div>
+
+  <div class="artezo-stats">
+    <div class="artezo-stat">
+      <strong>1300</strong>
+      <span>CS2 HOURS</span>
+    </div>
+    <div class="artezo-stat">
+      <strong>—</strong>
+      <span>FACEIT ELO</span>
+    </div>
+    <div class="artezo-stat">
+      <strong>2</strong>
+      <span>FACEIT LEVEL</span>
+    </div>
+  </div>
+
+  <button onclick="alert('ARTEZO PROFILE')">
+    MY PROFILE
+  </button>
+</section>/html>
